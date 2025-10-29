@@ -1,5 +1,5 @@
 """
-Streamlit Chat Interface for Policy RAG System
+Streamlit Chat Interface for Policy RAG System - Password Protected
 Web-based chat interface for querying organizational policies
 """
 
@@ -9,6 +9,7 @@ from pathlib import Path
 from document_processor import DocumentProcessor
 from vector_store import VectorStoreManager
 from query_engine import RAGQueryEngine
+import hashlib
 
 # Page configuration
 st.set_page_config(
@@ -16,6 +17,54 @@ st.set_page_config(
     page_icon="💧",
     layout="wide"
 )
+
+# Password protection
+def check_password():
+    """Returns `True` if the user had the correct password."""
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        # Get password from secrets (you'll add this in Streamlit Cloud)
+        correct_password = st.secrets.get("APP_PASSWORD", "waterorg2024")  # Default fallback
+        
+        # Hash the entered password
+        entered_hash = hashlib.sha256(st.session_state["password"].encode()).hexdigest()
+        correct_hash = hashlib.sha256(correct_password.encode()).hexdigest()
+        
+        if entered_hash == correct_hash:
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # Don't store password
+        else:
+            st.session_state["password_correct"] = False
+
+    # First run or password not correct
+    if "password_correct" not in st.session_state:
+        # First run, show input for password
+        st.text_input(
+            "🔒 Enter Password to Access Policy Assistant", 
+            type="password", 
+            on_change=password_entered, 
+            key="password"
+        )
+        st.info("Please enter the password to access the application.")
+        return False
+    elif not st.session_state["password_correct"]:
+        # Password not correct, show input + error
+        st.text_input(
+            "🔒 Enter Password to Access Policy Assistant", 
+            type="password", 
+            on_change=password_entered, 
+            key="password"
+        )
+        st.error("😕 Password incorrect. Please try again.")
+        return False
+    else:
+        # Password correct
+        return True
+
+# Check password before showing app
+if not check_password():
+    st.stop()  # Don't continue if password is incorrect
 
 # Initialize session state
 if "messages" not in st.session_state:
@@ -76,6 +125,13 @@ def process_and_index_documents(pdf_directory: str, metadata_map: dict):
 with st.sidebar:
     st.title("💧 Policy Assistant Setup")
     
+    # Logout button
+    if st.button("🚪 Logout"):
+        st.session_state["password_correct"] = False
+        st.rerun()
+    
+    st.divider()
+    
     # Try to get API key from secrets first
     auto_api_key = None
     try:
@@ -119,7 +175,7 @@ with st.sidebar:
     
     st.divider()
     
-    # Document upload section
+    # Document upload section (only show if initialized)
     if st.session_state.initialized:
         st.subheader("📄 Document Management")
         
@@ -178,7 +234,7 @@ with st.sidebar:
             # Store filters in session state
             st.session_state.filters = {}
             if filter_dept:
-                st.session_state.filters["department"] = filter_dept[0]  # ChromaDB doesn't support list filters directly
+                st.session_state.filters["department"] = filter_dept[0]
             if filter_region:
                 st.session_state.filters["region"] = filter_region[0]
             if filter_type:
@@ -198,7 +254,10 @@ st.title("💧 Water.org Policy Assistant")
 st.caption("Ask questions about organizational policies and procedures")
 
 if not st.session_state.initialized:
-    st.info("👈 Please enter your Anthropic API key in the sidebar to get started")
+    if not auto_api_key:
+        st.info("👈 Please enter your Anthropic API key in the sidebar to get started")
+    else:
+        st.info("⏳ Initializing system...")
 else:
     # Check if documents are indexed
     stats = st.session_state.vector_store.get_collection_stats()
@@ -259,4 +318,4 @@ else:
 
 # Footer
 st.divider()
-st.caption("Built with Anthropic Claude, ChromaDB, and Streamlit")
+st.caption("Built with Anthropic Claude, ChromaDB, and Streamlit | 🔒 Password Protected")
