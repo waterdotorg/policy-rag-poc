@@ -15,7 +15,8 @@ import hashlib
 st.set_page_config(
     page_title="Water.org Policy Assistant",
     page_icon="💧",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
 # Password protection
