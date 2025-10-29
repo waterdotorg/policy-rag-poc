@@ -76,21 +76,46 @@ def process_and_index_documents(pdf_directory: str, metadata_map: dict):
 with st.sidebar:
     st.title("💧 Policy Assistant Setup")
     
-    # API Key input
-    api_key = st.text_input(
-        "Anthropic API Key",
-        type="password",
-        help="Enter your Anthropic API key to use Claude"
-    )
+    # Try to get API key from secrets first
+    auto_api_key = None
+    try:
+        if "ANTHROPIC_API_KEY" in st.secrets:
+            auto_api_key = st.secrets["ANTHROPIC_API_KEY"]
+    except:
+        pass
     
-    if api_key and not st.session_state.initialized:
-        if st.button("Initialize System"):
+    # Also try environment variable
+    if not auto_api_key and "ANTHROPIC_API_KEY" in os.environ:
+        auto_api_key = os.environ["ANTHROPIC_API_KEY"]
+    
+    if auto_api_key:
+        st.success("✅ API key loaded from secrets")
+        api_key = auto_api_key
+        
+        # Auto-initialize if not already done
+        if not st.session_state.initialized:
             with st.spinner("Initializing..."):
                 success, message = initialize_system(api_key)
                 if success:
                     st.success(message)
                 else:
                     st.error(message)
+    else:
+        # Manual API key input
+        api_key = st.text_input(
+            "Anthropic API Key",
+            type="password",
+            help="Enter your Anthropic API key to use Claude"
+        )
+        
+        if api_key and not st.session_state.initialized:
+            if st.button("Initialize System"):
+                with st.spinner("Initializing..."):
+                    success, message = initialize_system(api_key)
+                    if success:
+                        st.success(message)
+                    else:
+                        st.error(message)
     
     st.divider()
     
