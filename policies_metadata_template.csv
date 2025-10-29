@@ -1,0 +1,6 @@
+filename,department,region,policy_type,effective_date,description
+expense_policy.pdf,Finance,Global,Policy,2024-01-01,Employee expense reimbursement policy
+travel_policy.pdf,Finance,Global,Policy,2024-01-01,Business travel booking and approval policy
+remote_work_policy.pdf,Human Resources,Global,Policy,2024-03-01,Remote and hybrid work arrangements
+code_of_conduct.pdf,Human Resources,Global,Policy,2023-06-01,Employee code of conduct and ethics
+data_privacy_policy.pdf,Technology,Global,Policy,2024-01-15,Data protection and privacy requirements
