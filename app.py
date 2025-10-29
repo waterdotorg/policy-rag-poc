@@ -125,12 +125,9 @@ def process_and_index_documents(pdf_directory: str, metadata_map: dict):
 # Sidebar
 with st.sidebar:
     
-    col1, col2 = st.columns([1, 8])
-    with col1:
-        st.image("waterorg_logo.png", width=80)
-    with col2:
-        st.markdown("# Water.org Policy Assistant")
-        st.caption("Ask questions about organizational policies and procedures")
+
+    st.markdown("# Water.org Policy Assistant")
+    st.caption("Ask questions about organizational policies and procedures")
 
 
     # Logout button
@@ -258,10 +255,6 @@ with st.sidebar:
             st.rerun()
 
 # Main chat interface
-
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
-    st.image("waterorg_logo.png", width=200)
 
 st.title("Water.org Policy Assistant")
 st.caption("Ask questions about organizational policies and procedures")
