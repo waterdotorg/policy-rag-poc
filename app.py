@@ -124,8 +124,15 @@ def process_and_index_documents(pdf_directory: str, metadata_map: dict):
 
 # Sidebar
 with st.sidebar:
-    st.title("💧 Policy Assistant Setup")
     
+    col1, col2 = st.columns([1, 8])
+    with col1:
+        st.image("waterorg_logo.png", width=80)
+    with col2:
+        st.markdown("# Water.org Policy Assistant")
+        st.caption("Ask questions about organizational policies and procedures")
+
+
     # Logout button
     if st.button("🚪 Logout"):
         st.session_state["password_correct"] = False
