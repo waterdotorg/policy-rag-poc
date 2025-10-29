@@ -36,10 +36,6 @@ test_chroma_db/
 # Streamlit
 .streamlit/
 
-# Policy documents (keep these private!)
-policies/
-*.pdf
-
 # IDE
 .vscode/
 .idea/
