@@ -14,7 +14,7 @@ import hashlib
 # Page configuration
 st.set_page_config(
     page_title="Water.org Policy Assistant",
-    page_icon="waterorg_logo.png", #page_icon="💧",
+    page_icon="waterorg_logo.png",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
