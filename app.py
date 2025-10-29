@@ -258,7 +258,12 @@ with st.sidebar:
             st.rerun()
 
 # Main chat interface
-st.title("💧 Water.org Policy Assistant")
+
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image("waterorg_logo.png", width=200)
+
+st.title("Water.org Policy Assistant")
 st.caption("Ask questions about organizational policies and procedures")
 
 if not st.session_state.initialized:
