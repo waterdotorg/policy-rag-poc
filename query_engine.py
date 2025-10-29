@@ -5,7 +5,12 @@ Handles question answering using Claude API with retrieved context
 
 import os
 from typing import List, Dict, Any, Optional
-from anthropic import Anthropic
+
+# Import with try/except for better error handling
+try:
+    from anthropic import Anthropic
+except ImportError as e:
+    raise ImportError(f"Failed to import anthropic: {e}. Make sure 'anthropic' is in requirements.txt")
 
 
 class RAGQueryEngine:
@@ -26,7 +31,14 @@ class RAGQueryEngine:
         if not self.api_key:
             raise ValueError("ANTHROPIC_API_KEY must be provided or set as environment variable")
         
-        self.client = Anthropic(api_key=self.api_key)
+        # Initialize client with explicit parameters only
+        try:
+            self.client = Anthropic(api_key=self.api_key)
+        except TypeError as e:
+            # Fallback for older anthropic versions
+            import anthropic
+            self.client = anthropic.Client(api_key=self.api_key)
+        
         self.model = "claude-sonnet-4-20250514"
     
     def format_context(self, search_results: Dict[str, Any]) -> str:
