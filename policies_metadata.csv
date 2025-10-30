@@ -1,14 +1,109 @@
-filename,department,region,policy_type,effective_date,description
-KC Office Emergency Evacuation Policy.pdf,Admin,Global,Policy,10/1/25,Emergency evacuation guidelines
-Sabbatical Policy.pdf,Human Resources,Global,Policy,10/1/25,Sabbatical guidelines 
-Remote Work Stipends Policy.pdf,Human Resources,Global,Policy,10/1/26,Remote work Stipend guidelines
-Travel Safety & Security Policy.pdf,Human Resources,Global,Policy,10/1/25,Travel safety and security guidelines
-Artificial Intelligence Usage Policy.pdf,Technology,Global,Policy,10/1/25,AI usage guidelines
-FY26 Global Remote Work Stipends for Office Supplies Policy.pdf,Technology,Global,Policy,10/1/25,Remote work and office supply guidelines
-Paid Leave of Absence Policy.pdf,Human Resources,Global,Policy,10/1/25,Paid Leave of Absence guidelines
-Employee Handbook (US).pdf,Human Resources,United States,Policy,10/1/25,Employee Handbook (US)
-Kansas City Office Front Door Policy.pdf,Admin,Global,Policy,10/1/25,Kansas City Office Front Door Guidelines
-Global Travel and Entertainment Policy.pdf,Human Resources,Global,Policy,10/1/25,Global Travel and Entertainment guidelines
-Global Standards of Business Conduct.pdf,Human Resources,Global,Policy,10/1/25,Global Standards of Business Conduct guidelines
-India Employee Handbook.pdf,Human Resources,India,Policy,10/1/25,Employee Handbook (India)
-Email Address Naming Procedure.pdf,Technology,Global,Procedure,10/1/25,Email Address Naming guidleines
+﻿filename,department,region,policy_type,effective_date,description
+Accounts Payable Service Level Agreement.pdf,Finance,All Countries,Procedure,10/1/24,Accounts Payable Service Level Agreement
+Approved Methods of Volumetric Water Benefit.pdf,Insights,All Countries,Policy,9/26/24,Approved Methods of Volumetric Water Benefit
+Artificial Intelligence Usage Policy.pdf,Technology,All Countries,Policy,1/30/25,Artificial Intelligence Usage Policy
+Asset Disposal Policy_Water.org Kenya.pdf,Global Impact,Tanzania;#Uganda;#Water.org Kenya,Policy,3/23/25,Asset Disposal Policy_Water
+Backup and Restoration Procedure.pdf,Technology,All Countries,Policy,6/11/24,Backup and Restoration Procedure
+Base of the Pyramid Policy.pdf,Insights,All Countries,Policy,8/13/24,Base of the Pyramid Policy
+Board of Directors Anti-Fraud Policy.pdf,OCEO,All Countries,Policy,6/24/24,Board of Directors Anti-Fraud Policy
+Board of Directors Audit Committee Charter.pdf,OCEO,US,Procedure,6/24/24,Board of Directors Audit Committee Charter
+Board of Directors Development Committee Charter.pdf,OCEO,US,Procedure,6/24/24,Board of Directors Development Committee Charter
+Board of Directors Nominating and Governance Committee Charter.pdf,OCEO,US,Procedure,6/24/24,Board of Directors Nominating and Governance Committee Charter
+Board of Directors Reimbursement Policy.pdf,OCEO,All Countries,Policy,6/24/24,Board of Directors Reimbursement Policy
+Board of Directors Standard Operating Procedures.pdf,OCEO,US,Procedure,6/24/24,Board of Directors Standard Operating Procedures
+Budget Cycle_Procedure.pdf,Finance,All Countries,Procedure,11/13/24,Budget Cycle_Procedure
+Budget Policy.pdf,Finance,All Countries,Policy,3/3/25,Budget Policy
+Business Card Guidelines.pdf,Human Resources,US,Procedure,5/15/15,Business Card Guidelines
+Capital Invested FY24 Reporting Process.pdf,Insights,All Countries,Policy,11/25/24,Capital Invested FY24 Reporting Process
+Capital Investment Impact Guidelines.pdf,Insights,All Countries,Procedure,8/13/24,Capital Investment Impact Guidelines
+Capital Investment Pipeline Reporting Procedure.pdf,Global Impact,All Countries,Procedure,5/5/25,Procedure -Capital Investment Pipeline Reporting
+Child Safeguarding Policy (Mexico) (Spanish).pdf,Human Resources,Water.org Mexico A.C.,Policy,11/3/23,Child Safeguarding Policy (Mexico) (Spanish)
+Child Safeguarding Policy (US).pdf,Legal,US,Policy,3/20/24,Child Safeguarding Policy (US)
+Collecting Case Stories Procedures (South Asia).pdf,Global Impact,India;#Bangladesh,Procedure,10/21/24,Collecting Case Stories Procedures (South Asia)
+Credit Card Policy (US).pdf,Finance,US,Policy,9/5/24,Credit Card Policy (US)
+Cybersecurity and Awareness Training Policy.pdf,Technology,All Countries,Policy,6/11/24,Cybersecurity and Awareness Training Policy
+Data Governance Charter.pdf,Technology,All Countries,Policy,8/28/24,Data Governance Charter
+Data Governance FY25-26 Roadmap.pdf,Technology,All Countries,Procedure,10/10/24,Data Governance FY25-26 Roadmap
+Delegation of Authority (as of Apr 2024).pdf,Legal,All Countries,Policy,6/2/24,Delegation of Authority (as of Apr 2024)
+Disaster Recovery Procedure.pdf,Technology,All Countries,Procedure,6/11/24,Disaster Recovery Procedure
+Donor Impact Protocol .pdf,Insights,All Countries,Procedure,9/9/24,Donor Impact Protocol
+Effectiveness Assessment Policy.pdf,OCEO,US,Policy,6/24/24,Effectiveness Assessment Policy
+Email Address Naming Procedure.pdf,Technology,All Countries,Procedure,7/25/24,Email Address Naming Procedure
+Employee Handbook (Bangladesh).pdf,Human Resources,Bangladesh,Policy,12/18/23,Employee Handbook (Bangladesh)
+Employee Handbook (Cambodia).pdf,Human Resources,Cambodia,Policy,10/1/22,Employee Handbook (Cambodia)
+Employee Handbook (Indonesia).pdf,Human Resources,Indonesia,Policy,7/14/24,Employee Handbook (Indonesia)
+Employee Handbook (Kenya).pdf,Human Resources,Water.org Kenya,Policy,7/13/23,Employee Handbook (Kenya)
+Employee Handbook (Philippines).pdf,Human Resources,Philippines,Policy,10/1/22,Employee Handbook (Philippines)
+Employee Handbook (US).pdf,Human Resources,US,Policy,9/1/22,Employee Handbook (US)
+Equity in Recruitment Policy.pdf,Human Resources,All Countries,Policy,12/3/24,Equity in Recruitment Policy
+Executive Summary DOA (as of Apr 2024).pdf,Legal,US,Policy,6/2/24,Executive Summary DOA (as of Apr 2024)
+Field Visit Documentation Standards.pdf,Marketing,All Countries,Procedure,7/21/24,Field Visit Documentation Standards
+Finance Team Charter.pdf,Finance,All Countries,Policy,10/21/24,Finance Team Charter
+Form I-9 Employment Eligibility Verification Policy.pdf,Human Resources,US,Policy,7/2/25,Form I-9 Employment Eligibility Verification Policy
+FY26 Global Remote Work Stipends for Office Supplies Policy.pdf,Technology,All Countries,Policy,10/15/25,FY26 Global Remote Work Stipends for Office Supplies Policy
+Geographic Philanthropic Pooled Funds Accounting Treatment.pdf,Finance,All Countries,Procedure,12/21/23,Geographic Philanthropic Pooled Funds Accounting Treatment
+GI Regional Travel for Global Teams.pdf,Global Impact,All Countries,Procedure,9/25/24,GI Regional Travel for Global Teams
+Global Individual Development Policy.pdf,Human Resources,All Countries,Policy,10/9/25,Global Individual Development Policy
+Global Repayment Rate.pdf,Insights,All Countries,Procedure,2/13/25,Global Repayment Rate
+Global Standards of Business Conduct (Mexico).pdf,Human Resources,Water.org Mexico A.C.,Policy,11/3/23,Global Standards of Business Conduct (Mexico)
+Global Standards of Business Conduct.pdf,Human Resources,All Countries,Policy,7/31/24,Global Standards of Business Conduct
+Global Tech Equipment Management Policy.pdf,Finance,All Countries,Policy,3/17/25,Global Tech Equipment Management Policy
+Global Technology Procedure.pdf,Technology,All Countries,Procedure,3/25/24,Global Technology Procedure
+Global Travel and Entertainment Policy.pdf,Finance,All Countries,Policy,10/29/24,Global Travel and Entertainment Policy
+Help Desk Support Policy.pdf,Technology,All Countries,Policy,6/11/24,Help Desk Support Policy
+Hiring Managers Recruiting User Guide.pdf,Human Resources,All Countries,Procedure,2/6/25,Hiring Managers Recruiting User Guide
+Hygiene Impact Guidelines.pdf,Insights,All Countries,Policy,7/13/23,Hygiene Impact Guidelines
+Identity Security Policy.pdf,Technology,All Countries,Policy,6/11/24,Identity Security Policy
+Independent Contractor Questionnaire_Contractor.docx,Human Resources,All Countries,Procedure,11/27/23,Independent Contractor Questionnaire_Contractor
+Independent Contractor Questionnaire_WO POC.docx,Human Resources,All Countries,Procedure,11/27/23,Independent Contractor Questionnaire_WO POC
+Independent Contractor Search Information.pdf,Human Resources,All Countries,Procedure,11/27/23,Independent Contractor Search Information
+India Employee Handbook.pdf,Human Resources,India,Policy,6/9/25,India Employee Handbook
+Internal Job Application Process.pdf,Human Resources,All Countries,Procedure,4/14/25,Internal Job Application Process
+Interviewers Recruiting User Guide.pdf,Human Resources,All Countries,Procedure,2/4/25,Interviewers Recruiting User Guide
+Ironclad CLM User Guide.pdf,Legal,All Countries,Procedure,4/29/25,Ironclad CLM User Guide
+Kansas City HQ Office Floor Plan.pdf,Human Resources,US,Procedure,7/13/23,Kansas City HQ Office Floor Plan
+Kansas City Office Emergency Procedure.pdf,Human Resources,US,Procedure,4/19/23,Kansas City Office Emergency Procedure
+Kansas City Office Front Door Policy.pdf,Human Resources,US,Policy,10/1/22,Kansas City Office Front Door Policy
+KC Office Emergency Evacuation Policy.pdf,Human Resources,US,Procedure,7/13/23,KC Office Emergency Evacuation Policy
+Legal Department Charter.pdf,Legal,All Countries,Procedure,6/20/24,Legal Department Charter
+"Location Policy (US, India).pdf",Human Resources,India;#US,Policy,5/15/15,"Location Policy (US, India)"
+MAP for Maternity (Bangladesh).pdf,Human Resources,Bangladesh,Policy,12/18/23,MAP for Maternity_Bangladesh
+Mexico Privacy Notice - Employees.pdf,Human Resources,Water.org Mexico A.C.,Policy,11/2/23,Mexico Privacy Notice - Employees
+Non-household verification guidelines.pdf,Insights,All Countries,Procedure,3/23/25,Non-household verification guidelines
+Paid Leave of Absence Policy.pdf,Human Resources,US,Policy,10/1/22,Paid Leave of Absence Policy
+People Reached Definitions_March 2025.pdf,Insights,All Countries,Policy,3/19/25,People Reached Definitions_March 2025
+Policy & Procedure Center User Manual.pdf,OCOO,All Countries,Procedure,7/14/24,Policy & Procedure Center User Manual
+Policy Management Framework.pdf,OCOO,All Countries,Policy,7/14/24,Policy Management Framework
+Program Monitoring Visit Protocol.pdf,Insights,All Countries,Policy,10/1/22,Program Monitoring Visit Protocol
+Project Management Tool Licence Management.pdf,Project Management Office (PMO),All Countries,Procedure,8/5/24,Project Management Tool Licence Management
+Protection Policy_Partner_Intervention 2025.pdf,Insights,All Countries,Policy,1/30/25,"Data Protection Policy: Partner, Intervention, and Research"
+Public Affairs Standard Operating Procedure.pdf,OCEO,All Countries,Procedure,7/8/24,Public Affairs Standard Operating Procedure
+Record Retention Policy (US).pdf,Legal,US,Policy,3/31/24,Record Retention Policy (US)
+Record Retention Schedule (US).pdf,Legal,US,Policy,3/31/24,Record Retention Schedule (US)
+Remote Work Stipends Policy.pdf,Human Resources,All Countries,Policy,9/1/22,Remote Work Stipends Policy
+Revenue Classification Standards.pdf,Finance,All Countries,Policy,12/21/23,Revenue Classification Standards
+Revenue Recognition Protocol and Classification.pdf,Finance,All Countries,Procedure,12/20/23,Revenue Recognition Protocol and Classification
+Sabbatical Policy.pdf,Human Resources,All Countries,Policy,5/1/23,Policy on Sabbatical
+SD Grant Agreement Review Process Map.pdf,Fundraising,All Countries,Procedure,4/22/24,SD Grant Agreement Review Process Map
+Security Handling Policy and Procedure.pdf,Technology,All Countries,Procedure,8/5/24,Security Handling Policy and Procedure
+Software Procurement and Management Policy.pdf,Technology,All Countries,Policy,8/29/24,Software Procurement and Management Policy
+State Registration Management Policy.pdf,Legal,US,Policy,6/2/24,State Registration Management Policy
+System Administration and Permissions Policy.pdf,Technology,All Countries,Policy,8/5/24,System Administration and Permissions Policy
+Talent Acquisition Reviewers User Guide.pdf,Human Resources,All Countries,Procedure,3/20/24,Talent Acquisition Reviewers User Guide
+Technology and Computer Use Policy.pdf,Technology,All Countries,Policy,6/11/24,Technology and Computer Use Policy
+Technology Department Charter.pdf,Technology,All Countries,Procedure,9/24/25,Water
+Telework Policy (Mexico) (Eng-Spa).pdf,Human Resources,Water.org Mexico A.C.,Policy,11/3/23,Telework Policy (Mexico)(Eng-Spa)
+Thematic Survey Data Metrics Usage Guidelines.pdf,Insights,All Countries,Procedure,1/15/25,Thematic Survey Data Metrics Usage Guidelines
+"Time Off Policy (South Asia, South East Asia).pdf",Human Resources,Philippines;#Bangladesh;#India;#Indonesia;#Cambodia,Policy,12/13/23,"Time Off Policy (South Asia, South East Asia)"
+Time off to Vote Notice California 2020.pdf,Human Resources,US,Policy,5/15/15,Time off to Vote Notice California 2020
+Time Off to Vote Notice New York 2020.pdf,Human Resources,US,Policy,10/1/22,Time Off to Vote Notice New York 2020
+Travel Safety & Security Policy.pdf,Human Resources,All Countries,Policy,3/13/25,Travel Safety & Security Policy
+Undesignated Revenue Accounting Treatment.pdf,Finance,All Countries,Procedure,12/20/23,Undesignated Revenue Accounting Treatment
+Velocity Global Overview_Employer of Record.pptx,Human Resources,All Countries,Procedure,2/18/24,Velocity Global Overview_Employer of Record
+Velocity Global Reference_Employer of Record.pdf,Human Resources,All Countries,Procedure,2/18/24,Velocity Global Reference_Employer of Record
+VWBA Protocol and Messaging + Annex.pdf,Insights,All Countries,Procedure,1/14/25,VWBA Protocol and Messaging + Annex
+Water Quality Loan Policy.pdf,Insights,All Countries,Policy,7/13/23,Water Quality Loan Policy
+Water.org Board of Directors Bylaws.pdf,OCEO,All Countries,Policy,4/24/25,Water.org Board of Directors Bylaws
+WaterCredit Impact Guidelines for Households and Institutions.pdf,Insights,All Countries,Procedure,2/12/25,WaterCredit Impact Guidelines for Households and Institutions
+Wire Transfer Procedure.pdf,Finance,All Countries,Procedure,5/15/15,Wire Transfer Procedure
+WSS Enterprise Impact Guidelines.pdf,Insights,All Countries,Procedure,10/7/24,WSS Enterprise Impact Guidelines
