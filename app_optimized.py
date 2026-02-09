@@ -346,6 +346,9 @@ else:
     
     # Chat input
     if prompt := st.chat_input("Ask a question about policies..."):
+        # Get filters
+        filters = st.session_state.get("filters", {})
+        
         # Add user message
         st.session_state.messages.append({"role": "user", "content": prompt})
         
@@ -354,64 +357,183 @@ else:
         
         # Generate response
         with st.chat_message("assistant"):
-            with st.spinner("Searching policies..."):
-                # Get filters
-                filters = st.session_state.get("filters", {})
-                
-                # Query the system
-                result = st.session_state.query_engine.query(
-                    question=prompt,
-                    n_results=5,
-                    filter_metadata=filters if filters else None
-                )
-                
-                # If there's a temporary document, include it in the context
-                if st.session_state.temp_document:
-                    # Modify the answer to include analysis of the uploaded document
-                    enhanced_prompt = f"""I have uploaded a new policy document titled "{st.session_state.temp_document['filename']}" for comparison.
-
-UPLOADED DOCUMENT CONTENT:
-{st.session_state.temp_document['text'][:4000]}  
-
-EXISTING POLICIES CONTEXT:
-{chr(10).join([f"- {source['filename']}: {source.get('text', '')[:500]}" for source in result['sources']])}
-
-USER QUESTION: {prompt}
-
-Please analyze the uploaded document against the existing policies and answer the user's question."""
+            # Initialize variables
+            answer = ""
+            sources = []
+            
+            # If there's a temporary document, do enhanced comparison
+            if st.session_state.temp_document:
+                with st.spinner("🔍 Analyzing uploaded document..."):
+                    uploaded_text = st.session_state.temp_document['text']
+                    uploaded_filename = st.session_state.temp_document['filename']
                     
-                    # Re-query with enhanced context
-                    from anthropic import Anthropic
-                    client = Anthropic(api_key=st.session_state.query_engine.api_key)
+                    # IMPROVED APPROACH: Content-based search with more results
+                    # Step 1: Chunk the uploaded document
+                    status = st.status("Processing comparison...", expanded=True)
+                    status.write("📄 Chunking uploaded document...")
                     
-                    response = client.messages.create(
-                        model="claude-sonnet-4-20250514",
-                        max_tokens=2000,
-                        messages=[
-                            {"role": "user", "content": enhanced_prompt}
+                    uploaded_chunks = []
+                    chunk_size = 1000
+                    chunk_overlap = 200
+                    start = 0
+                    while start < len(uploaded_text):
+                        end = start + chunk_size
+                        uploaded_chunks.append(uploaded_text[start:end])
+                        start += chunk_size - chunk_overlap
+                    
+                    status.write(f"✓ Created {len(uploaded_chunks)} chunks from uploaded document")
+                    
+                    # Step 2: Search using uploaded doc content (not just the question)
+                    status.write("🔎 Searching for similar policies in database...")
+                    
+                    all_results = []
+                    seen_ids = set()
+                    
+                    # Use first 3 chunks as search queries
+                    search_chunks = uploaded_chunks[:min(3, len(uploaded_chunks))]
+                    
+                    for chunk in search_chunks:
+                        # Query using each chunk
+                        chunk_results = st.session_state.vector_store.collection.query(
+                            query_texts=[chunk],
+                            n_results=10,  # Increased from 5 to get more coverage
+                            include=['documents', 'metadatas', 'distances'],
+                            where=filters if filters else None
+                        )
+                        
+                        # Collect results and deduplicate
+                        if chunk_results['ids'] and chunk_results['ids'][0]:
+                            for i, doc_id in enumerate(chunk_results['ids'][0]):
+                                if doc_id not in seen_ids:
+                                    seen_ids.add(doc_id)
+                                    all_results.append({
+                                        'text': chunk_results['documents'][0][i],
+                                        'metadata': chunk_results['metadatas'][0][i],
+                                        'distance': chunk_results['distances'][0][i]
+                                    })
+                    
+                    status.write(f"✓ Found {len(all_results)} relevant policy chunks")
+                    
+                    # Step 3: Sort by similarity and limit to top 20
+                    all_results.sort(key=lambda x: x['distance'])
+                    top_results = all_results[:20]
+                    
+                    # Step 4: Group by document for better context
+                    status.write("📋 Organizing results by policy document...")
+                    
+                    policies_by_doc = {}
+                    for result in top_results:
+                        filename = result['metadata'].get('filename', 'Unknown')
+                        if filename not in policies_by_doc:
+                            policies_by_doc[filename] = {
+                                'chunks': [],
+                                'metadata': result['metadata']
+                            }
+                        policies_by_doc[filename]['chunks'].append(result['text'])
+                    
+                    status.write(f"✓ Comparing against {len(policies_by_doc)} existing policies")
+                    
+                    # Check if we found any policies
+                    if not policies_by_doc:
+                        answer = f"""I analyzed the uploaded document "{uploaded_filename}" but couldn't find any similar existing policies in the database.
+
+This could mean:
+- This is a completely new topic not covered by existing policies
+- The existing policy database is empty or not yet indexed
+- The search terms in the document don't match existing policy content
+
+Would you like to:
+1. Upload this as a permanent policy to the database
+2. Check if existing policies are properly indexed
+3. Ask a more specific question about the document content"""
+                        sources = []
+                        status.update(label="⚠️ No similar policies found", state="complete")
+                    else:
+                        # Step 5: Build comprehensive comparison prompt
+                        existing_policies_text = ""
+                        for filename, data in list(policies_by_doc.items())[:5]:  # Limit to 5 policies to avoid context overflow
+                            policy_text = "\n\n".join(data['chunks'])
+                            existing_policies_text += f"\n\n=== {filename} ===\n"
+                            existing_policies_text += f"Department: {data['metadata'].get('department', 'N/A')}\n"
+                            existing_policies_text += f"Region: {data['metadata'].get('region', 'N/A')}\n"
+                            existing_policies_text += f"Type: {data['metadata'].get('policy_type', 'N/A')}\n"
+                            existing_policies_text += f"Content:\n{policy_text[:2000]}\n"  # Limit each policy to avoid overflow
+                        
+                        comparison_prompt = f"""You are analyzing a new policy document against existing organizational policies.
+
+NEW POLICY DOCUMENT: {uploaded_filename}
+{uploaded_text[:6000]}
+
+EXISTING POLICIES IN DATABASE:
+{existing_policies_text}
+
+USER'S QUESTION: {prompt}
+
+Please provide a comprehensive analysis that includes:
+1. **Overlaps**: What topics/requirements exist in both the new policy and existing policies?
+2. **Contradictions**: Where does the new policy conflict with existing policies? Be specific about what contradicts.
+3. **Gaps**: What does the new policy cover that isn't in existing policies?
+4. **Redundancies**: Is this new policy necessary or does it duplicate existing policies?
+5. **Recommendations**: Should this policy be adopted as-is, merged with existing policies, or modified?
+
+For each finding, cite the specific existing policy name.
+"""
+                        
+                        # Step 6: Query Claude
+                        status.write("🤖 Analyzing with Claude...")
+                        
+                        from anthropic import Anthropic
+                        client = Anthropic(api_key=st.session_state.query_engine.api_key)
+                        
+                        response = client.messages.create(
+                            model="claude-sonnet-4-20250514",
+                            max_tokens=3000,
+                            messages=[
+                                {"role": "user", "content": comparison_prompt}
+                            ]
+                        )
+                        
+                        answer = response.content[0].text
+                        status.update(label="✅ Analysis complete!", state="complete")
+                        
+                        # Format sources
+                        sources = [
+                            {
+                                'filename': filename,
+                                'department': data['metadata'].get('department', 'N/A'),
+                                'region': data['metadata'].get('region', 'N/A'),
+                                'policy_type': data['metadata'].get('policy_type', 'N/A')
+                            }
+                            for filename, data in policies_by_doc.items()
                         ]
+                
+            else:
+                # Regular query without uploaded document
+                with st.spinner("Searching policies..."):
+                    result = st.session_state.query_engine.query(
+                        question=prompt,
+                        n_results=5,
+                        filter_metadata=filters if filters else None
                     )
-                    
-                    answer = response.content[0].text
-                else:
                     answer = result["answer"]
-                
-                # Display answer
-                st.markdown(answer)
-                
-                # Display sources
-                if result["sources"]:
-                    with st.expander("📚 Sources"):
-                        for source in result["sources"]:
-                            st.write(f"**{source['filename']}**")
-                            st.write(f"Department: {source['department']} | Region: {source['region']} | Type: {source['policy_type']}")
-                            st.divider()
+                    sources = result["sources"]
+            
+            # Display answer (moved outside if/else so it always runs)
+            st.markdown(answer)
+            
+            # Display sources
+            if sources:
+                with st.expander("📚 Sources"):
+                    for source in sources:
+                        st.write(f"**{source['filename']}**")
+                        st.write(f"Department: {source['department']} | Region: {source['region']} | Type: {source['policy_type']}")
+                        st.divider()
         
         # Add assistant message
         st.session_state.messages.append({
             "role": "assistant",
-            "content": answer if st.session_state.temp_document else result["answer"],
-            "sources": result["sources"]
+            "content": answer,
+            "sources": sources
         })
 
 # Footer
