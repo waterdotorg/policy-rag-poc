@@ -323,11 +323,8 @@ else:
                 st.rerun()
     
     if uploaded_file and st.session_state.temp_document is None:
-        st.write("DEBUG: About to extract text...")
-        st.write(f"DEBUG: File name: {uploaded_file.name}")
         with st.spinner("Extracting text from PDF..."):            
             text = extract_text_from_pdf(uploaded_file)
-            st.write(f"DEBUG: Text extracted, length: {len(text)}")
             if not text.startswith("Error"):
                 st.session_state.temp_document = {
                     "filename": uploaded_file.name,
