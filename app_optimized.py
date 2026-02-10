@@ -13,6 +13,13 @@ import hashlib
 import PyPDF2
 import io
 
+# Initialize session state at the very top of your app
+if "temp_document" not in st.session_state:
+    st.session_state.temp_document = None
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+    
 # Page configuration
 st.set_page_config(
     page_title="Water.org Policy Assistant",
@@ -133,6 +140,9 @@ def extract_text_from_pdf(uploaded_file):
         import PyPDF2
         import io
         
+        # Ensure we're at the start of the file buffer
+        uploaded_file.seek(0)
+        
         # Read PDF from uploaded file
         pdf_reader = PyPDF2.PdfReader(io.BytesIO(uploaded_file.read()))
         
@@ -144,7 +154,6 @@ def extract_text_from_pdf(uploaded_file):
         return text.strip()
     except Exception as e:
         return f"Error extracting text: {str(e)}"
-
 
 # Sidebar
 with st.sidebar:
@@ -314,8 +323,11 @@ else:
                 st.rerun()
     
     if uploaded_file and st.session_state.temp_document is None:
-        with st.spinner("Extracting text from PDF..."):
+        st.write("DEBUG: About to extract text...")
+        st.write(f"DEBUG: File name: {uploaded_file.name}")
+        with st.spinner("Extracting text from PDF..."):            
             text = extract_text_from_pdf(uploaded_file)
+            st.write(f"DEBUG: Text extracted, length: {len(text)}")
             if not text.startswith("Error"):
                 st.session_state.temp_document = {
                     "filename": uploaded_file.name,
